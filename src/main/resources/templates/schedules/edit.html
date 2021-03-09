@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit</title>
+
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet" />
+    <link th:href="@{/css/forming.css}" rel="stylesheet" />
+</head>
+<body>
+<a th:insert="navBar :: bar">
+</a>
+
+
+<form th:method="PATCH" th:action="@{/schedules/{id}(id=${schedule.getScheduleId()})}" th:object="${schedule}">
+    <p><label for="groupDTO">
+        Select group: </label></p>
+    <p><select class="form-control" style="width: 200px" th:field="*{groupDTO.groupId}" id="groupDTO" name="groupDTO">
+        <option value="0">Select group</option>
+        <option th:each="group: ${groups}"
+                th:value="${group.groupId}"
+                th:text="${group.groupName}">
+        </option>
+    </select></p>
+
+    <p><label for="courseDTO">
+        Select course: </label></p>
+    <p><select class="form-control" style="width: 200px" th:field="*{courseDTO.courseId}" id="courseDTO" name="courseDTO">
+        <option value="0">Select course</option>
+        <option th:each="course: ${courses}"
+                th:value="${course.courseId}"
+                th:text="${course.courseName}">
+        </option>
+    </select></p>
+
+    <p><label for="teacherDTO">
+        Select teacher: </label></p>
+    <p> <select class="form-control" style="width: 200px" th:field="*{teacherDTO.teacherId}" id="teacherDTO" name="teacherDTO">
+        <option value="0">Select teacher</option>
+        <option th:each="teacher: ${teachers}"
+                th:value="${teacher.teacherId}"
+                th:text="${teacher.fullName}">
+        </option>
+    </select></p>
+
+    <p><label for="timetableDTO">
+        Select timetable: </label></p>
+    <p><select class="form-control" style="width: 200px" th:field="*{timeTableDTO.id}" id="timetableDTO" name="timetableDTO">
+        <option value="0">Select timetable</option>
+        <option th:each="timetable: ${timetables}"
+                th:value="${timetable.id}"
+                th:text="${timetable.tableName}">
+        </option>
+    </select></p>
+
+    <p><label for="date">
+        Select date: </label></p>
+    <p><input class="form-control" style="width: 200px" type="date" th:field="*{date}" id="date" name="date"/></p>
+    <div th:if="${#fields.hasErrors('date')}" th:errors="*{date}">ERROR NAME</div>
+    <br>
+    <input class="inputClass" type="submit" value="Update"/>
+    <input class="backButton" type="button" value="Cancel" onclick="history.back()">
+</form>
+
+
+</body>
+
+<script th:src="@{/js/bootstrap.min.js}"></script>
+<script th:src="@{/jquery/jquery.min.js}"></script>
+</html>

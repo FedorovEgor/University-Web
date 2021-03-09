@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Schedule</title>
+
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet" />
+    <link th:href="@{/css/newStyling.css}" rel="stylesheet" />
+    <link th:href="@{/DataTables/datatables.css}" rel="stylesheet">
+
+</head>
+<body>
+<a th:insert="navBar :: bar">
+</a>
+
+<div class="table-responsive">
+    <table id="myTable" class="display table table-dark table-striped table-bordered table-hover table-sm p-1 mt-3 ">
+        <br>
+        <caption>
+            <button type="button" class="btn btn-info btn-sm float-left"  data-toggle="modal" data-target="#modalAddNew">
+                <a href="/students/new" style="color: white">+ Add new student </a>
+            </button>
+        </caption>
+        <thead>
+        <tr>
+            <th style="width: 10%">ID</th>
+            <th style="width: 15%">GROUP NAME</th>
+            <th style="width: 15%">COURSE NAME</th>
+            <th style="width: 15%">TEACHER NAME</th>
+            <th style="width: 15%">TIMETABLE</th>
+            <th style="width: 15%">DATE</th>
+            <th style="width: 10%">EDIT</th>
+            <th style="width: 10%">DELETE</th>
+        </tr>
+        </thead>
+        <tbody>
+        <form>
+            <tr>
+                <td class="tableRefs" th:href="@{/schedules/{id}(id=${schedule.getScheduleId()})}" th:text="${schedule.getScheduleId()}">schedule</td>
+                <td><a class="tableRefs" th:href="@{/groups/{id}(id=${schedule.getGroupDTO().getGroupId()})}" th:text="${schedule.getGroupDTO().getGroupName()}">schedule</a></td>
+                <td><a class="tableRefs" th:href="@{/courses/{id}(id=${schedule.getCourseDTO().getCourseId()})}" th:text="${schedule.getCourseDTO().getCourseName()}">schedule</a></td>
+                <td><a class="tableRefs" th:href="@{/teachers/{id}(id=${schedule.getTeacherDTO().getTeacherId()})}" th:text="${schedule.getTeacherDTO().getFullName()}">schedule</a></td>
+                <td><a class="tableRefs" th:href="@{/timetables/{id}(id=${schedule.getTimeTableDTO().getId()})}" th:text="${schedule.getTimeTableDTO().getTableName()}">schedule</a></td>
+                <td><form><a class="tableRefs" th:text="${schedule.getDate()}">schedule</a></form></td>
+                <td><form th:action="@{/schedules/{id}/edit(id=${schedule.getScheduleId()})}"><input class="input" type="submit" value="Edit"/></form></td>
+                <td>
+                    <form th:method="DELETE" th:action="@{/schedules/{id}(id=${schedule.getScheduleId()})}">
+                        <input class="input" type="submit" value="Delete"/>
+                    </form>
+                </td>
+            </tr>
+        </form>
+        </tbody>
+    </table>
+</div>
+<br/>
+<hr/>
+
+</body>
+<script th:src="@{/jquery/jquery.min.js}"></script>
+<script type="text/javascript" th:src="@{/DataTables/datatables.js}"></script>
+<script>
+    $(document).ready(function(){
+        $('#myTable').dataTable();
+    });
+</script>
+
+<script th:src="@{/js/bootstrap.min.js}"></script>
+</html>

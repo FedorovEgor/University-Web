@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>All groups</title>
+
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet" />
+    <link th:href="@{/css/newStyling.css}" rel="stylesheet" />
+    <link th:href="@{/DataTables/datatables.css}" rel="stylesheet">
+
+</head>
+<body>
+<a th:insert="navBar :: bar">
+</a>
+<div class="table-responsive">
+    <table id="groupTable" class="display table table-dark table-striped table-bordered table-hover table-sm p-1 mt-3 ">
+        <br>
+        <caption>
+            <button type="button" class="btn btn-info btn-sm float-left"  data-toggle="modal" data-target="#modalAddNew">
+                <a th:href="@{/groups/new}" style="color: white">+ Add new group </a>
+            </button>
+        </caption>
+        <thead>
+        <tr>
+            <th style="width: 10%">ID</th>
+            <th>GROUP NAME</th>
+            <th style="width: 15%">EDIT</th>
+            <th style="width: 10%">DELETE</th>
+        </tr>
+        </thead>
+        <tbody>
+        <form th:each="group : ${groups}">
+            <tr>
+                <td class="tableRefs" th:href="@{/groups/{id}(id=${group.getGroupId()})}" th:text="${group.getGroupId()}">group</td>
+                <td><form><a class="tableRefs" th:href="@{/groups/{id}(id=${group.getGroupId()})}" th:text="${group.getGroupName()}">group</a></form></td>
+                <td>
+                    <form th:action="@{/groups/{id}/edit(id=${group.getGroupId()})}">
+                        <input class="input" type="submit" value="Edit">
+                    </form>
+                </td>
+                <td>
+                    <form th:method="DELETE" th:action="@{/groups/{id}(id=${group.getGroupId()})}">
+                        <input class="input" type="submit" value="Delete"/>
+                    </form>
+                </td>
+            </tr>
+        </form>
+        </tbody>
+    </table>
+</div>
+<br/>
+<hr/>
+
+
+</body>
+<script th:src="@{/jquery/jquery.min.js}"></script>
+<script type="text/javascript" th:src="@{/DataTables/datatables.js}"></script>
+<script>
+    $(document).ready(function(){
+        $('#groupTable').dataTable();
+    });
+</script>
+
+<script th:src="@{/js/bootstrap.min.js}"></script>
+</html>

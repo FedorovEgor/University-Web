@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit</title>
+
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet" />
+    <link th:href="@{/css/forming.css}" rel="stylesheet" />
+</head>
+<body>
+
+<a th:insert="navBar :: bar">
+</a>
+
+
+<form th:method="PATCH" th:action="@{/groups/{id}(id=${group.getGroupId()})}" th:object="${group}">
+    <p><label for="groupName">Enter group name: </label></p>
+    <p><input type="text" th:field="*{groupName}" id="groupName"/></p>
+    <div th:if="${#fields.hasErrors('groupName')}" th:errors="*{groupName}">ERROR NAME</div>
+    <br>
+    <input class="inputClass" type="submit" value="Update"/>
+    <input class="backButton" type="button" value="Cancel" onclick="history.back()">
+</form>
+
+</body>
+
+<script th:src="@{/js/bootstrap.min.js}"></script>
+<script th:src="@{/jquery/jquery.min.js}"></script>
+</html>

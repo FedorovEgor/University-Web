@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>New timetable</title>
+
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet" />
+    <link th:href="@{/css/newStyling.css}" rel="stylesheet" />
+    <link th:href="@{/css/buttons.css}" rel="stylesheet" />
+</head>
+
+<body>
+<a th:insert="navBar :: bar">
+</a>
+<div class="formType" style="width: 450px">
+    <form th:method="POST" th:action="@{/timeTables}" th:object="${timetable}">
+        <label for="tableName">Enter timetable name: </label>
+        <p><input type="text" th:field="*{tableName}" id="tableName"/></p>
+        <div th:if="${#fields.hasErrors('tableName')}" th:errors="*{tableName}">ERROR NAME</div>
+        <label for="date">
+            Select date: </label>
+        <input class="form-control" style="width: 200px" type="date" th:field="*{date}" id="date" name="date"/>
+        <div th:if="${#fields.hasErrors('date')}" th:errors="*{date}">ERROR NAME</div>
+        <br>
+        <br>
+        <input class="inputType" type="submit" value="Create"/>
+    </form>
+    <form>
+        <input class="backButton" type="button" value="Cancel" onclick="history.back()">
+    </form>
+</div>
+</body>
+
+<script th:src="@{/js/bootstrap.min.js}"></script>
+<script th:src="@{/jquery/jquery.min.js}"></script>
+</html>

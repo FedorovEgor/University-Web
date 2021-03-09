@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit</title>
+
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet" />
+    <link th:href="@{/css/forming.css}" rel="stylesheet" />
+</head>
+<body>
+<a th:insert="navBar :: bar">
+</a>
+
+<form  th:method="PATCH" th:action="@{/courses/{id}(id=${course.getCourseId()})}" th:object="${course}">
+    <p><label for="courseName">Enter group name: </label></p>
+    <p><input type="text" th:field="*{courseName}" id="courseName"/></p>
+    <div th:if="${#fields.hasErrors('courseName')}" th:errors="*{courseName}">ERROR NAME</div>
+    <br>
+
+    <p><label for="teacherDTO" >Select teacher:</label></p>
+    <p>
+    <select class="form-control" style="width: 200px" th:field="*{teacherDTO.teacherId}" id="teacherDTO" name="teacherDTO">
+        <option value="0">Select teacher</option>
+        <option th:each="teacher: ${teachers}"
+                th:value="${teacher.teacherId}"
+                th:text="${teacher.fullName}" >
+        </option>
+    </select>
+    </p>
+    <br>
+    <input class="inputClass" type="submit" value="Update"/>
+    <input class="backButton" type="button" value="Cancel" onclick="history.back()">
+</form>
+
+
+</body>
+
+<script th:src="@{/js/bootstrap.min.js}"></script>
+<script th:src="@{/jquery/jquery.min.js}"></script>
+</html>

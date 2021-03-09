@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>New course</title>
+
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet" />
+    <link th:href="@{/css/newStyling.css}" rel="stylesheet" />
+    <link th:href="@{/css/buttons.css}" rel="stylesheet" />
+</head>
+
+<body>
+<a th:insert="navBar :: bar">
+</a>
+<div class="formType" style="width: 450px">
+    <form th:method="POST" th:action="@{/courses}" th:object="${course}">
+        <label for="courseName">Enter course name: </label>
+        <input type="text" th:field="*{courseName}" id="courseName"/>
+        <div th:if="${#fields.hasErrors('courseName')}" th:errors="*{courseName}">ERROR NAME</div>
+        <br>
+        <label for="teacherDTO">
+            Select teacher: </label>
+        <select class="form-control" style="width: 200px" th:field="*{teacherDTO.teacherId}" id="teacherDTO" name="teacherDTO">
+            <option value="0">Select teacher</option>
+            <option th:each="teacher: ${teachers}"
+                    th:value="${teacher.teacherId}"
+                    th:text="${teacher.fullName}" >
+            </option>
+        </select>
+        <br>
+        <input class="inputType" type="submit" value="Create"/>
+    </form>
+    <form>
+        <input class="backButton" type="button" value="Cancel" onclick="history.back()">
+    </form>
+</div>
+</body>
+
+<script th:src="@{/js/bootstrap.min.js}"></script>
+<script th:src="@{/jquery/jquery.min.js}"></script>
+</html>

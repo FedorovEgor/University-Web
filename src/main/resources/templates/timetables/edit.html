@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit</title>
+
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet" />
+    <link th:href="@{/css/forming.css}" rel="stylesheet" />
+</head>
+<body>
+<a th:insert="navBar :: bar">
+</a>
+
+<form th:method="PATCH" th:action="@{/timeTables/{id}(id=${timetable.getId()})}" th:object="${timetable}">
+    <p><label for="tableName">Enter timetable name: </label></p>
+    <p><input type="text" th:field="*{tableName}" id="tableName"/></p>
+    <div th:if="${#fields.hasErrors('tableName')}" th:errors="*{tableName}">ERROR NAME</div>
+    <br>
+    <p><label for="date">
+        Select date: </label></p>
+    <p><input class="form-control" style="width: 200px" type="date" th:field="*{date}" id="date" name="date"/></p>
+    <div th:if="${#fields.hasErrors('date')}" th:errors="*{date}">ERROR NAME</div>
+    <br>
+    <input class="inputClass" type="submit" value="Update"/>
+    <input class="backButton" type="button" value="Cancel" onclick="history.back()">
+</form>
+
+
+</body>
+
+<script th:src="@{/js/bootstrap.min.js}"></script>
+<script th:src="@{/jquery/jquery.min.js}"></script>
+</html>

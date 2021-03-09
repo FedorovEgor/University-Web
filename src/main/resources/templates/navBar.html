@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<body>
+<div id="navBar" th:fragment="bar" class="topnav">
+    <a class="active" th:href="@{/}">Home</a>
+    <a th:href="@{/students}">Students</a>
+    <a th:href="@{/groups}">Groups</a>
+    <a th:href="@{/courses}">Courses</a>
+    <a th:href="@{/teachers}">Teachers</a>
+    <a th:href="@{/schedules}">Schedules</a>
+    <a th:href="@{/timeTables}">Timetables</a>
+</div>
+</body>
+</html>
