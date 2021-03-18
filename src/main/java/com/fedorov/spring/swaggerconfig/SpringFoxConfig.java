@@ -29,9 +29,9 @@ public class SpringFoxConfig {
                 "API endpoints for third party developers",
                 "1.0",
                 "Free to use",
-                new springfox.documentation.service.Contact("Egor Fedorov", "http://egorfedorov.com","EgorFerdorov@gmail.com"),
+                new springfox.documentation.service.Contact("Egor Fedorov", "https://github.com/FedorovEgor","fedorov.egor.work@gmail.com"),
                 "API Licence",
-                "http://egorfedorov.com",
+                "https://github.com/FedorovEgor",
                 Collections.emptyList()
         );
     }
