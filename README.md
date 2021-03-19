@@ -1,2 +1,3 @@
 # University-Web
-Spring framework, Spring boot, Spring data, ORM, hibernate, Swagger etc.
+Web application based on Springboot, SpringDataJPA, PostgreSQL, Hibernate ORM, REST API, Html, css, Junit, Mockito, Swagger deployed on Tomcat local
+server.
